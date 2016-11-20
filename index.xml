@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tobias Schmidt</title>
-    <link>mrtobe.github.io/index.xml</link>
-    <description>Recent content on Tobias Schmidt</description>
+    <title>Tobias Schmidt&#39;s Blog</title>
+    <link>https://tobias-schmidt.site/index.xml</link>
+    <description>Recent content on Tobias Schmidt&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/mrtobe&#34;&gt;Tobias Schmidt&lt;/a&gt; 2016</copyright>
     <lastBuildDate>Sun, 20 Nov 2016 16:48:07 +0100</lastBuildDate>
-    <atom:link href="mrtobe.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tobias-schmidt.site/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hello World</title>
-      <link>/mrtobe.github.io/post/hello-world/</link>
+      <link>https://tobias-schmidt.site/post/hello-world/</link>
       <pubDate>Sun, 20 Nov 2016 16:48:07 +0100</pubDate>
       
-      <guid>/mrtobe.github.io/post/hello-world/</guid>
+      <guid>https://tobias-schmidt.site/post/hello-world/</guid>
       <description>
 
 &lt;h1 id=&#34;hello-world&#34;&gt;Hello World&lt;/h1&gt;
