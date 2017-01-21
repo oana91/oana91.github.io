@@ -22,8 +22,8 @@
 functionallity (logging, panic recovery, cors) that one needs to create for almost
 each web application. It is very straightforward to use
 negroni throughout the development phase of a project, then replace it with custom
-code throughout production.
-Throughout coding &lt;a href=&#34;https://github.com/MrToBe/bago&#34;&gt;bago&lt;/a&gt;, a small basic authentification
+code in production.
+While coding &lt;a href=&#34;https://github.com/MrToBe/bago&#34;&gt;bago&lt;/a&gt;, a small basic authentification
 middleware for negroni, I could not find any tutorials on how to write a
 negroni framework. So there we go:&lt;/p&gt;
 
@@ -61,14 +61,14 @@ functions to it.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I picked the name Middleware, but you could choose whatever you like. The only
-restricting is, that the name needs to be capitalized. If your middleware
+restriction is, that the name needs to be capitalized. If your middleware
 requires some configuration or in-memory storage you can setup some variables
 within the struct. For an authentification software you could for example hold the
 correct username or password.&lt;/p&gt;
 
 &lt;p&gt;After that you would typically setup a function that creates a new instance of
 your Middleware struct. Therefore I use the golang convention of a New()
-function that returns a pointer to the new struct. This allows you for example
+function that returns a pointer to the new instance. This allows you for example
 to validate the input before setting the variables.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func New(variable string) *Middleware {
@@ -78,8 +78,8 @@ to validate the input before setting the variables.&lt;/p&gt;
 
 &lt;h2 id=&#34;the-middleware&#34;&gt;The middleware&lt;/h2&gt;
 
-&lt;p&gt;After the above is setup you can focus on your actual middleware logic. This is
-done by attaching a ServeHTTP function to your new Middleware struct:&lt;/p&gt;
+&lt;p&gt;After these setup steps you can focus on the actual middleware logic. This is
+done by attaching a ServeHTTP function to the Middleware struct:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request, n http.HandlerFunc) {
     // This code is executed before the next handler
@@ -91,8 +91,8 @@ done by attaching a ServeHTTP function to your new Middleware struct:&lt;/p&gt;
 &lt;p&gt;This function allways needs to be named ServeHTTP to implement the negroni
 middleware interface. Then the magic happens with the n(w, r) part of the
 function. What negroni does is just passing one handler to another to build a
-chain of functionallity that is executed on the http.ResponseWriter and r
-*http.Request. In an authentification middleware one would for example check the
+chain of functionallity that is executed on the http.ResponseWriter w and
+*http.Request r. In an authentification middleware one would for example check the
 credentials in the header before running the next handler via n(w, r). This next
 handler could be an endpoint handler or another middleware.&lt;/p&gt;
 
@@ -103,20 +103,10 @@ request and then validates if the response actually makes sense.&lt;/p&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Even so the golang community tries to stay away from frameworks, for me it makes
-sense to use frameworks for middleware as this functionallity is usally prette
+sense to use frameworks for middleware as this functionallity is usally pretty
 generic. Therefore negroni is a lot of fun and it fits perfect into the standard
 lib without limiting you from using other libraries. Writing middleware for
 negroni is straightforward and simple. There is no magic involved.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Under construction</title>
-      <link>http://tobias-schmidt.site/post/under-construction/</link>
-      <pubDate>Sun, 20 Nov 2016 16:48:07 +0100</pubDate>
-      
-      <guid>http://tobias-schmidt.site/post/under-construction/</guid>
-      <description>&lt;p&gt;This blog is currentl under construction and rebuild with hugo.&lt;/p&gt;
 </description>
     </item>
     
