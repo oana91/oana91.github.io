@@ -1,114 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tobias Schmidt</title>
-    <link>http://tobias-schmidt.site/index.xml</link>
-    <description>Recent content on Tobias Schmidt</description>
+    <title>Oana Schmidt</title>
+    <link>http://oana-schmidt.de/index.xml</link>
+    <description>Recent content on Oana Schmidt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/mrtobe&#34;&gt;Tobias Schmidt&lt;/a&gt; 2016</copyright>
-    <lastBuildDate>Thu, 22 Dec 2016 09:32:16 +0100</lastBuildDate>
-    <atom:link href="http://tobias-schmidt.site/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Writing negroni middleware in golang</title>
-      <link>http://tobias-schmidt.site/post/writing-negroni-middleware-in-golang/</link>
-      <pubDate>Thu, 22 Dec 2016 09:32:16 +0100</pubDate>
-      
-      <guid>http://tobias-schmidt.site/post/writing-negroni-middleware-in-golang/</guid>
-      <description>
-
-&lt;p&gt;Negroni is a great middleware framework for golang that comes with a lot of
-functionallity (logging, panic recovery, cors) that one needs to create for almost
-each web application. It is very straightforward to use
-negroni throughout the development phase of a project, then replace it with custom
-code in production.
-While coding &lt;a href=&#34;https://github.com/MrToBe/bago&#34;&gt;bago&lt;/a&gt;, a small basic authentification
-middleware for negroni, I could not find any tutorials on how to write a
-negroni framework. So there we go:&lt;/p&gt;
-
-&lt;h2 id=&#34;what-is-a-negroni-middleware&#34;&gt;What is a (negroni) middleware?&lt;/h2&gt;
-
-&lt;p&gt;First things first. A middleware is just some code that is executed before a
-http request reaches its handler on a server. For example in an online banking
-application a user requests the server to show his balance. Before showing the
-balance the server needs to authenticate the user. Therefore one could write a
-authentification middleware that checks the username and password.&lt;/p&gt;
-
-&lt;p&gt;Doing authentification in a middleware instead of the handler has the huge
-advantage of re-use. In a typical RESTful API we would need to implement the
-authentification code once for each http method get, post, put, delete. By using
-a middleware we can handle authentification before the request hits the handler.&lt;/p&gt;
-
-&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
-
-&lt;p&gt;To get going you need to create a project folder under your go/src directory. To
-start coding it only requires one .go file.&lt;/p&gt;
-
-&lt;p&gt;First it is necessary to name the package of the file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package middleware
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here I named the package middleware, but you can pick any name you like. After
-this it is necessary to create a struct that implements the negroni middleware
-interface. In golang this means we need to create a struct and attach some
-functions to it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Middleware struct {
-    variable string
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I picked the name Middleware, but you could choose whatever you like. The only
-restriction is, that the name needs to be capitalized. If your middleware
-requires some configuration or in-memory storage you can setup some variables
-within the struct. For an authentification software you could for example hold the
-correct username or password.&lt;/p&gt;
-
-&lt;p&gt;After that you would typically setup a function that creates a new instance of
-your Middleware struct. Therefore I use the golang convention of a New()
-function that returns a pointer to the new instance. This allows you for example
-to validate the input before setting the variables.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func New(variable string) *Middleware {
-       return &amp;amp;Middleware{variable}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;the-middleware&#34;&gt;The middleware&lt;/h2&gt;
-
-&lt;p&gt;After these setup steps you can focus on the actual middleware logic. This is
-done by attaching a ServeHTTP function to the Middleware struct:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (m *Middleware) ServeHTTP(w http.ResponseWriter, r *http.Request, n http.HandlerFunc) {
-    // This code is executed before the next handler
-    n(w,r)
-    // This code is executed after the next handler
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This function allways needs to be named ServeHTTP to implement the negroni
-middleware interface. Then the magic happens with the n(w, r) part of the
-function. What negroni does is just passing one handler to another to build a
-chain of functionallity that is executed on the http.ResponseWriter w and
-*http.Request r. In an authentification middleware one would for example check the
-credentials in the header before running the next handler via n(w, r). This next
-handler could be an endpoint handler or another middleware.&lt;/p&gt;
-
-&lt;p&gt;What is great about this setup is that you can execute code before and after the
-handler. That way you could for example write a middleware that checks the
-request and then validates if the response actually makes sense.&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Even so the golang community tries to stay away from frameworks, for me it makes
-sense to use frameworks for middleware as this functionallity is usally pretty
-generic. Therefore negroni is a lot of fun and it fits perfect into the standard
-lib without limiting you from using other libraries. Writing middleware for
-negroni is straightforward and simple. There is no magic involved.&lt;/p&gt;
-</description>
-    </item>
+    <language>en-us</language>
+    <copyright>Oana Schmidt</copyright>
+    <atom:link href="http://oana-schmidt.de/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
