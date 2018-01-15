@@ -8,8 +8,6 @@
     <h1 id="test">Hello iFrame</h1>
     
     <script type="text/javascript">
-        
-        document.cookie = "tobias=schmidt";
       
         function setCookie(name,value,days) {
             var expires = "";
@@ -31,6 +29,8 @@
             }
             return null;
         }
+      
+        setCookie("tobias","schmidt",5);
       
         function handleMessage(e) {
             var c = getCookie("tobias");
