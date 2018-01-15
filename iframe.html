@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>iFrame test</title>
+    <meta name="robots" content="noindex, nofollow">
+  </head>
+  <body>
+    <h1 id="test">Hello iFrame</h1>
+    
+    <script type="text/javascript">
+        
+        document.cookie = "tobias=schmidt";
+      
+        function setCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+      
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+      
+        function handleMessage(e) {
+            var c = getCookie("tobias");
+            document.getElementById("test").innerHTML = c;
+            e.source.postMessage(c, "http://localhost:3000");
+
+        }
+     
+        window.addEventListener("message", handleMessage, false);
+    </script>
+  </body>
+</html>
