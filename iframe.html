@@ -1,11 +1,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>iFrame test</title>
+    <title>in iframe</title>
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
-    <h1 id="test">Hello iFrame</h1>
+    <h1 id="label">Hello from iFrame</h1>
+    <button id="btn">Set Cookie</h1>
     
     <script type="text/javascript">
       
@@ -39,13 +40,20 @@
                     break;
                 case "set":
                     setCookie(e.data.name,e.data.value,5);
-                    document.getElementById("test").innerHTML = "Cookie set! " + e.data.name;
+                    document.getElementById("label").innerHTML = "Cookie set! " + e.data.name;
                     break;
                 default:
-                    document.getElementById("test").innerHTML = "Unknown action!";
+                    document.getElementById("label").innerHTML = "Unknown action!";
             }   
         }
      
+        function handleClick(e) {
+          e.preventDefault();
+          
+          setCookie("mytest","myvalue",5);
+        }
+        
+        document.getElementById("btn").addEventListener("click", handleClick, false);
         window.addEventListener("message", handleMessage, false);
     </script>
   </body>
