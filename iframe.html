@@ -5,7 +5,7 @@
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
-    <h1 id="label">Hello from iFrame</h1>
+    <p id="label">Hello from iFrame</p>
     <button id="btn">Set Cookie</h1>
     
     <script type="text/javascript">
@@ -51,6 +51,7 @@
           e.preventDefault();
           
           setCookie("mytest","myvalue",5);
+          document.getElementById("label").innerHTML = "Cookie set in iframe";
         }
         
         document.getElementById("btn").addEventListener("click", handleClick, false);
