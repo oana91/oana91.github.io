@@ -9,12 +9,13 @@
     
     <script type="text/javascript">
       
-function setCookie(cname,cvalue, daysExpire){
-var d = new Date();
-d.setTime(d.getTime()+(daysExpire * 24 * 60 * 60 * 1000));
-var expires = "expires=" + d.toGMTString();
-document.cookie = cname + "=" + cvalue + "; " + expires + " ; path=/ ;"
-}
+        function setCookie(cname,cvalue, daysExpire){
+            var d = new Date();
+            d.setTime(d.getTime()+(daysExpire * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+             
+            document.cookie = cname + "=" + cvalue + "; " + expires + " ; path=/ ;"
+        }
       
         function getCookie(name) {
             var nameEQ = name + "=";
@@ -24,16 +25,25 @@ document.cookie = cname + "=" + cvalue + "; " + expires + " ; path=/ ;"
                 while (c.charAt(0)==' ') c = c.substring(1,c.length);
                 if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
             }
+          
             return null;
         }
       
-        setCookie("tobias","schmidt",5);
-      
         function handleMessage(e) {
-            var c = getCookie("tobias");
-            document.getElementById("test").innerHTML = c;
-            e.source.postMessage(c, "http://localhost:3000");
-
+            if (e.origin !== "http://localhost:3000") return;  
+        
+            switch(e.data.action) {
+                case "get":
+                    var c = getCookie("tobias");
+                    e.source.postMessage(c, "http://localhost:3000");
+                    break;
+                case "set":
+                    setCookie(e.data.name,e.data.value,5);
+                    document.getElementById("test").innerHTML = "Cookie set! " + e.data.name;
+                    break;
+                default:
+                    document.getElementById("test").innerHTML = "Unknown action!";
+            }   
         }
      
         window.addEventListener("message", handleMessage, false);
