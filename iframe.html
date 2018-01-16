@@ -41,6 +41,7 @@
             if (e.data.action === "set"){
                 document.getElementById("label").innerHTML = "set";
                 setCookie(e.data.name,e.data.value,5);
+                localStorage.setItem(e.data.name, e.data.value);
                 document.getElementById("label").innerHTML = "Cookie set! " + e.data.name;
             }
         }
